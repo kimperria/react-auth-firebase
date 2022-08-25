@@ -30,7 +30,7 @@ export default function Signup() {
                     <Form.Control type="password" ref={passwordConfirmRef} required></Form.Control>
                 </Form.Group>
 
-                <Button className='w-100' type="submit">Sign Up</Button>
+                <Button className='w-100 mt-2' type="submit">Sign Up</Button>
             </Form>
         </Card.Body>
     </Card>
