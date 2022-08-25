@@ -1,4 +1,4 @@
-import React , {useRef} from 'react'
+import React , {useRef, useState} from 'react'
 import { Form, Button, Card } from "react-bootstrap"
 import { useAuth } from '../context/AuthContext'
 
@@ -9,12 +9,27 @@ export default function Signup() {
     const passwordConfirmRef = useRef()
     // Points signup Function directly to sign up context
     const { signup } = useAuth()
+    // Error handler using use state hook
+    const [error, setError] = useState('')
 
-    function handleSubmit(e){
+    async function handleSubmit(e){
         e.preventDefault()
         // Prevents form from refreshing
 
-        signup(emailRef.current.value, passwordRef.current.value)
+        //conditionals to be met before sign up
+        if (passwordRef.current.value !== passwordConfirmRef.current.value){
+            return setError(" Passwords do not match")
+        }
+
+        try {
+            //set error back to empty string
+            setError('')
+            await  signup(emailRef.current.value, passwordRef.current.value)
+        }catch{
+            setError('Failed to create an account')
+        }
+
+
     }
 
 
