@@ -8,7 +8,7 @@ export default function Login() {
     const emailRef = useRef()
     const passwordRef = useRef()
     // Points signup Function directly to sign up context
-    const { signup } = useAuth()
+    const { login } = useAuth()
     // Error handler using use state hook
     const [error, setError] = useState('')
     // Create loading state
@@ -23,9 +23,9 @@ export default function Login() {
             //set error back to empty string
             setError('')
             setLoading(true)
-            await  signup(emailRef.current.value, passwordRef.current.value)
+            await  login(emailRef.current.value, passwordRef.current.value)
         }catch{
-            setError('Failed to create an account')
+            setError('Failed to sign in')
         }
 
         // Set loading status to false after clicking on submit

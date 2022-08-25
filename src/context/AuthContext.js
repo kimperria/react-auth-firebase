@@ -16,7 +16,14 @@ export function AuthProvider({children}) {
     
     //signup function with uses email and password arguement to return a promise
     function signup(email, password) {
+        // change this function to connect to server
        return auth.createUserWithEmailAndPassword(email, password)
+    }
+
+    //Log in function that takes in email and password again
+    function login(email, password) {
+        // change this function to connect to server
+        return auth.signInWithEmailAndPassword(email, password)
     }
 
     //useEffect to avoid setUser method to run on render [ ] ensure it runs only one
@@ -37,6 +44,7 @@ export function AuthProvider({children}) {
     const value = {
         // infomation provided with authentication
         currentUser,
+        login,
         signup
     }
 
