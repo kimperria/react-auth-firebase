@@ -12,6 +12,7 @@ export function useAuth(){
 export function AuthProvider({children}) {
     // user state to handle currentUser
     const [ currentUser, setCurrentUser ] = useState()
+    const [loading, setLoading] = useState(true)
     
     //signup function with uses email and password arguement to return a promise
     function signup(email, password) {
@@ -22,7 +23,9 @@ export function AuthProvider({children}) {
     useEffect(() =>{
     //method backed with firebase to set user
         const unsubscribe = auth.onAuthStateChanged(user => {
-            // this function return a method to unsubscribe on Auth State Chnage
+            // sets initial state to false
+            setLoading(false)
+            // this function return a method to unsubscribe on Auth State Change
             setCurrentUser(user)
         })
 
@@ -39,8 +42,9 @@ export function AuthProvider({children}) {
 
   return (
     // context
+    // sets condition not to render children if not loading
     <AuthContext.Provider value={value}>
-        {children}
+        {!loading && children}
     </AuthContext.Provider>
   )
 }
