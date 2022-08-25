@@ -11,6 +11,8 @@ export default function Signup() {
     const { signup } = useAuth()
     // Error handler using use state hook
     const [error, setError] = useState('')
+    // Create loading state
+    const [ loading, setLoading ] = useState(false)
 
     async function handleSubmit(e){
         e.preventDefault()
@@ -24,12 +26,14 @@ export default function Signup() {
         try {
             //set error back to empty string
             setError('')
+            setLoading(true)
             await  signup(emailRef.current.value, passwordRef.current.value)
         }catch{
             setError('Failed to create an account')
         }
 
-
+        // Set loading status to false after clicking on submit
+        setLoading(false)
     }
 
 
