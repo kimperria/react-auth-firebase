@@ -1,7 +1,7 @@
 import React , {useRef, useState} from 'react'
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from '../context/AuthContext'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function Login() {
     //set local referance to useRef lib
@@ -13,6 +13,8 @@ export default function Login() {
     const [error, setError] = useState('')
     // Create loading state
     const [ loading, setLoading ] = useState(false)
+    // navigate 
+    const navigate = useNavigate()
 
     async function handleSubmit(e){
         e.preventDefault()
@@ -24,6 +26,7 @@ export default function Login() {
             setError('')
             setLoading(true)
             await  login(emailRef.current.value, passwordRef.current.value)
+            navigate('/')
         }catch{
             setError('Failed to sign in')
         }
