@@ -26,6 +26,12 @@ export function AuthProvider({children}) {
         return auth.signInWithEmailAndPassword(email, password)
     }
 
+
+    //logout user function
+    function logout(){
+        return auth.signOut()
+    }
+
     //useEffect to avoid setUser method to run on render [ ] ensure it runs only one
     useEffect(() =>{
     //method backed with firebase to set user
@@ -45,7 +51,8 @@ export function AuthProvider({children}) {
         // infomation provided with authentication
         currentUser,
         login,
-        signup
+        signup,
+        logout
     }
 
   return (
