@@ -29,6 +29,14 @@ Run react application
 npm start
 ```
 
+## Screenshots
+
+### Sign Up page
+![sign up](/public/signup.png)
+### Login Page
+![login page](/public/login.png)
+
+
 ## Technologies used
 - Framework: react
 - Language: JavaScript
