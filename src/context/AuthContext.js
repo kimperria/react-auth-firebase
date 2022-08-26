@@ -37,6 +37,16 @@ export function AuthProvider({children}) {
         return auth.sendPasswordResetEmail(email)
     }
 
+    //function to update email
+    function updateEmail(email){
+       return currentUser.updateEmail(email)
+    }
+
+    // function to update password
+    function updatePassword(password){
+        return currentUser.updatePassword(password)
+    }
+
     //useEffect to avoid setUser method to run on render [ ] ensure it runs only one
     useEffect(() =>{
     //method backed with firebase to set user
@@ -58,7 +68,9 @@ export function AuthProvider({children}) {
         login,
         signup,
         logout,
-        resetPassword
+        resetPassword,
+        updateEmail,
+        updatePassword
     }
 
   return (
