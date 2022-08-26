@@ -6,6 +6,7 @@ import HomePage from "./HomePage";
 import Login from "./Login";
 import Dashboard from "./Dashboard";
 import PrivateRoute from "./routing/PrivateRoute";
+import ForgotPassword from './ForgotPassword'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             }/>
               <Route path='/signup' element={<Signup/>} />
               <Route path='/login' element={<Login/>} />
+              <Route path='/forgot-password' element={<ForgotPassword/>} />
             </Routes>
           </AuthProvider>
         </Router>
