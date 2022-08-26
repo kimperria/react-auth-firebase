@@ -32,6 +32,11 @@ export function AuthProvider({children}) {
         return auth.signOut()
     }
 
+    //forgot password function
+    function resetPassword(email){
+        return auth.sendPasswordResetEmail(email)
+    }
+
     //useEffect to avoid setUser method to run on render [ ] ensure it runs only one
     useEffect(() =>{
     //method backed with firebase to set user
@@ -52,7 +57,8 @@ export function AuthProvider({children}) {
         currentUser,
         login,
         signup,
-        logout
+        logout,
+        resetPassword
     }
 
   return (

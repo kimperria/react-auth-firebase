@@ -7,7 +7,9 @@ export default function ForgotPassword() {
     //set local referance to useRef lib
     const emailRef = useRef()
     // Points signup Function directly to sign up context
-    const { login } = useAuth()
+    const { resetPassword } = useAuth()
+    // Success message
+    const [message, setMessage] = useState('')
     // Error handler using use state hook
     const [error, setError] = useState('')
     // Create loading state
@@ -21,13 +23,14 @@ export default function ForgotPassword() {
 
 
         try {
-            //set error back to empty string
+            //set error and message to empty string
+            setMessage('')
             setError('')
             setLoading(true)
-            // await  login(emailRef.current.value, passwordRef.current.value)
-            navigate('/')
+            await  resetPassword(emailRef.current.value)
+            setMessage("Check your inbox for further instructions")
         }catch{
-            setError('Failed to sign in')
+            setError('Failed to reset password')
         }
 
         // Set loading status to false after clicking on submit
@@ -41,6 +44,7 @@ export default function ForgotPassword() {
         <Card.Body>
             <h2 className='text-center mb-4'>Password Reset</h2>
             { error && <Alert variant='danger'>{error}</Alert>}
+            { message && <Alert variant='success'>{message}</Alert>}
             <Form onSubmit={handleSubmit}>
                 <Form.Group id="email">
                     <Form.Label>Email</Form.Label>
